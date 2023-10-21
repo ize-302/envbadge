@@ -7,12 +7,20 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "migration:generate": "drizzle-kit generate:pg --schema=./db/schema.ts",
+    "migration:push": "drizzle-kit push:pg --config=./db/drizzle.config.ts",
+    "migrate": "bun migration:generate && bun migration:push"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
+    "drizzle-kit": "^0.19.13",
     "nuxt": "^3.8.0",
     "vue": "^3.3.4",
     "vue-router": "^4.2.5"
+  },
+  "dependencies": {
+    "drizzle-orm": "^0.28.6",
+    "pg": "^8.11.3"
   }
 }

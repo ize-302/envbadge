@@ -1,0 +1,10 @@
+const { DATABASE_URL } = process.env;
+
+export default {
+  schema: "./db/schema.ts",
+  out: "./drizzle",
+  driver: "pg",
+  dbCredentials: {
+    connectionString: DATABASE_URL,
+  },
+};
