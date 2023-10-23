@@ -10,7 +10,7 @@
         <div class="flex justify-between items-center gap-2">
           <ColorModeButton />
           <UBadge class="gap-1" color="gray" variant="solid" size="lg">
-            <!-- <UAvatar size="xs" :src="`${currentUser?.avatar_url}`" /> -->
+            <UAvatar size="xs" :src="`${currentUser?.avatar_url}`" />
             {{ currentUser?.login }}
           </UBadge>
           <UButton @click="logout()" color="red" variant="outline"
@@ -30,7 +30,7 @@ const route = useRoute();
 const router = useRouter();
 const store = useStore();
 const { accessToken } = route.query;
-let currentUser = ref(store.currentUser);
+let currentUser = ref();
 
 useHead({
   titleTemplate: "EnvBadge",
@@ -41,9 +41,8 @@ const conditionals = async () => {
     store.logout();
     window.location.href = String("/");
   } else {
-    store.fetchCurrentUser().then((value) => {
-      currentUser.value = value;
-    }) as any;
+    const user = await $fetch(`/api/user?accessToken=${store.accessToken}`);
+    currentUser.value = user;
   }
 };
 
