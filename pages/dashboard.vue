@@ -1,4 +1,12 @@
-<template>hello</template>
+<template>
+  <div class="mt-5 flex justify-between items-center">
+    <NewProject />
+    <p class="text-slate-600 text-lg dark:text-white">Projects</p>
+  </div>
+  <div class="">
+    <Projects />
+  </div>
+</template>
 
 <script setup lang="ts">
 definePageMeta({

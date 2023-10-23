@@ -1,6 +1,6 @@
 <template>
   <div class="text-[#0f3254] dark:text-gray-300">
-    <div class="container mx-auto max-w-5xl">
+    <div class="container mx-auto max-w-5xl px-5">
       <slot />
     </div>
   </div>

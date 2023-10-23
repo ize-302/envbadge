@@ -1,6 +1,6 @@
 <template>
-  <div class="text-gray-500 dark:text-gray-400">
-    <div class="container mx-auto max-w-5xl">
+  <div class="text-[#0f3254] dark:text-gray-300">
+    <div class="container mx-auto max-w-5xl px-5">
       <div
         class="flex justify-between items-center py-5 border-b-[0.1px] border-slate-300 dark:border-slate-700"
       >
@@ -10,7 +10,7 @@
         <div class="flex justify-between items-center gap-2">
           <ColorModeButton />
           <UBadge class="gap-1" color="gray" variant="solid" size="lg">
-            <UAvatar size="xs" :src="`${currentUser?.avatar_url}`" />
+            <!-- <UAvatar size="xs" :src="`${currentUser?.avatar_url}`" /> -->
             {{ currentUser?.login }}
           </UBadge>
           <UButton @click="logout()" color="red" variant="outline"
@@ -24,7 +24,6 @@
 </template>
 
 <script setup lang="ts">
-import { UserCircleIcon } from "vue-tabler-icons";
 import { useStore } from "../store";
 
 const route = useRoute();
