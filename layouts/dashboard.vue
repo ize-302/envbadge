@@ -10,10 +10,13 @@
         <div class="flex justify-between items-center gap-2">
           <ColorModeButton />
           <UBadge class="gap-1" color="gray" variant="solid" size="lg">
-            <UAvatar size="xs" :src="`${currentUser?.avatar_url}`" />
-            {{ currentUser?.login }}
+            <UAvatar size="xs" :src="`${user.image}`" />
+            {{ user.name }}
           </UBadge>
-          <UButton @click="logout()" color="red" variant="outline"
+          <UButton
+            @click="signOut({ callbackUrl: '/' })"
+            color="red"
+            variant="outline"
             >Logout</UButton
           >
         </div>
@@ -24,39 +27,10 @@
 </template>
 
 <script setup lang="ts">
-import { useStore } from "../store";
-
-const route = useRoute();
-const router = useRouter();
-const store = useStore();
-const { accessToken } = route.query;
-let currentUser = ref();
+const { data, signOut } = useAuth();
+const { user } = data.value;
 
 useHead({
   titleTemplate: "EnvBadge",
-});
-
-const conditionals = async () => {
-  if (store.accessToken === "") {
-    store.logout();
-    window.location.href = String("/");
-  } else {
-    const user = await $fetch(`/api/user?accessToken=${store.accessToken}`);
-    currentUser.value = user;
-  }
-};
-
-const logout = () => {
-  store.logout();
-  window.location.href = String("/");
-};
-
-if (route.query.accessToken) {
-  store.saveToken(accessToken as string);
-  router.push("/dashboard");
-}
-
-onMounted(async () => {
-  await conditionals();
 });
 </script>
