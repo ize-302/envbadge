@@ -8,27 +8,6 @@
       "when": 1697929158545,
       "tag": "0000_nervous_surge",
       "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "5",
-      "when": 1698102303985,
-      "tag": "0001_shocking_shadowcat",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "5",
-      "when": 1698102455931,
-      "tag": "0002_amazing_lifeguard",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "5",
-      "when": 1698102560958,
-      "tag": "0003_flaky_mystique",
-      "breakpoints": true
     }
   ]
 }
