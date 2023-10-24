@@ -15,7 +15,7 @@
 <script setup>
 import axios from "axios";
 const projects = [];
-clearNuxtData("projects");
+await clearNuxtData("projects");
 const { data: response } = await useLazyAsyncData("projects", () =>
   $fetch("/api/projects", { server: true })
 );
