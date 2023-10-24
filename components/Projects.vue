@@ -13,5 +13,12 @@
 </template>
 
 <script setup>
-const projects = [1, 2, 3, 4, 5];
+import axios from "axios";
+const projects = [];
+await clearNuxtData("projects");
+const { data: response } = await useLazyAsyncData("projects", () =>
+  $fetch("/api/projects", { server: true })
+);
+projects.value = response;
+console.log("--", response.value);
 </script>

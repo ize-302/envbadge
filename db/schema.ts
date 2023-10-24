@@ -1,4 +1,8 @@
-import { pgTable, serial, text } from "drizzle-orm/pg-core";
+import { integer, pgTable, serial, text } from "drizzle-orm/pg-core";
+
+export const users = pgTable("users", {
+  id: text("id").primaryKey(),
+});
 
 export const projects = pgTable("projects", {
   id: serial("id").primaryKey(),
