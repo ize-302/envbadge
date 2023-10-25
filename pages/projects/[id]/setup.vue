@@ -1,5 +1,5 @@
 <template>
-  <Project> environments </Project>
+  <Project> setup </Project>
 </template>
 
 <script setup lang="ts">
