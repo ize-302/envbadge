@@ -1,14 +1,14 @@
 <template>
   <div class="mt-5 pb-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
     <USkeleton
-      v-show="store.isloading"
+      v-show="store.getLoadingStatus"
       v-for="item in [1, 2, 3, 4, 5]"
       class="h-32"
       :ui="{ rounded: 'rounded-md' }"
     />
     <Project
-      v-show="!store.isloading"
-      v-for="(project, index) in store.projects.items"
+      v-show="!store.getLoadingStatus"
+      v-for="(project, index) in store.getProjects.items"
       :project="project"
       :key="index"
     />

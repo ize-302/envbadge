@@ -11,7 +11,9 @@
           Project Details
         </h1>
         <NewProjectForm
+          :initialData="store.getProject"
           :submitting="submitting"
+          label="Update"
           @handleSubmit="(data) => handleSubmission(data)"
         />
       </div>
@@ -27,6 +29,8 @@ const store = useStore();
 const route = useRoute();
 const { id } = route.params;
 const submitting = ref(false);
+
+store.fetchProject({ id });
 
 const handleSubmission = (data: any) => {
   submitting.value = true;

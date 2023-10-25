@@ -18,18 +18,18 @@
         :loading="submitting"
         :disabled="submitting"
         type="submit"
-        label="Create"
+        :label="label"
       />
     </UFormGroup>
   </UForm>
 </template>
 
 <script setup>
+const props = defineProps(["submitting", "label", "initialData"]);
 const state = ref({
-  name: "",
-  base_url: "",
+  name: props.initialData.name || "",
+  base_url: props.initialData.base_url || "",
 });
-const props = defineProps(["submitting"]);
 
 const validate = (state) => {
   const errors = [];
