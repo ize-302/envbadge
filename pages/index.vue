@@ -7,10 +7,10 @@
         <UButton
           v-if="user_status === 'unauthenticated'"
           class="font-jakarta"
-          @click="signIn('github', { callbackUrl: '/dashboard' })"
+          @click="signIn('github', { callbackUrl: '/projects' })"
           >Signin with Github</UButton
         >
-        <UButton v-else class="font-jakarta" @click="router.push('/dashboard')">
+        <UButton v-else class="font-jakarta" @click="router.push('/projects')">
           My projects</UButton
         >
       </div>

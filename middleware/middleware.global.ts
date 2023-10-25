@@ -1,7 +1,7 @@
 export default defineNuxtRouteMiddleware((to) => {
   const { status, signIn } = useAuth();
   // Return immediately if user is already authenticated
-  if (to.path === "/dashboard" && status.value === "unauthenticated") {
+  if (to.path === "/projects" && status.value === "unauthenticated") {
     navigateTo("/");
     return;
   }
