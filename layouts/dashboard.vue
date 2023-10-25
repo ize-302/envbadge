@@ -24,6 +24,7 @@
       <slot />
     </div>
   </div>
+  <UNotifications />
 </template>
 
 <script setup lang="ts">

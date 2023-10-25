@@ -1,6 +1,6 @@
 <template>
   <div class="mt-5 flex justify-between items-center">
-    <NewProject />
+    <NewProjectModal />
     <p class="text-slate-600 text-lg dark:text-white">Projects</p>
   </div>
   <div class="">

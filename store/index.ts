@@ -30,6 +30,13 @@ export const useStore = defineStore("store", {
         body: { name, base_url },
       });
     },
+    async updateProject(values: any) {
+      const { name, base_url, id } = values;
+      await useFetch(`/api/projects/${id}`, {
+        method: "put",
+        body: { name, base_url },
+      });
+    },
     updateLoadingStatus(value: boolean) {
       this.isloading = value;
     },
