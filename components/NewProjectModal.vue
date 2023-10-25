@@ -25,25 +25,12 @@
             />
           </div>
         </template>
-
-        <UForm
-          class="flex flex-col gap-4"
-          :validate="validate"
-          :state="state"
-          @submit="submit"
-        >
-          <UFormGroup label="Project name" name="name">
-            <UInput v-model="state.name" />
-          </UFormGroup>
-
-          <UFormGroup label="URL" name="base_url">
-            <UInput v-model="state.base_url" />
-          </UFormGroup>
-
-          <UFormGroup>
-            <UButton type="submit" label="Create" />
-          </UFormGroup>
-        </UForm>
+        <NewProjectForm
+          :initialData="{}"
+          :submitting="submitting"
+          label="Create"
+          @handleSubmit="(data) => handleSubmission(data)"
+        />
       </UCard>
     </UModal>
   </div>
@@ -54,11 +41,9 @@ const toast = useToast();
 const isOpen = ref(false);
 import { useStore } from "~/store";
 const store = useStore();
+const submitting = ref(false);
 
-const state = ref({
-  name: "",
-  base_url: "",
-});
+const state = ref({});
 
 const validate = (state) => {
   const errors = [];
@@ -67,11 +52,14 @@ const validate = (state) => {
   return errors;
 };
 
-async function submit(event) {
-  store.saveProject(event.data).then(() => {
+async function handleSubmission(data) {
+  submitting.value = true;
+  store.saveProject(data).then(() => {
     isOpen.value = false;
     store.fetchProjects();
+    submitting.value = false;
     toast.add({ title: "Project has been added" });
+    state.value = {};
   });
 }
 </script>
