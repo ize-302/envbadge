@@ -6,7 +6,7 @@
         class="bg-slate-50 dark:bg-slate-900 border border-gray-300 dark:border-gray-700 rounded-md p-5"
       >
         <h1
-          class="font-jakarta text-md font-medium text-black dark:text-white mb-5"
+          class="font-jakarta text-md font-medium text-slate-500 dark:text-slate-500 mb-5"
         >
           Project Details
         </h1>
@@ -17,6 +17,8 @@
           @handleSubmit="(data) => handleSubmission(data)"
         />
       </div>
+      <!-- delete -->
+      <DeleteProject />
     </div>
   </Project>
 </template>

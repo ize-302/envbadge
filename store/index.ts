@@ -11,7 +11,7 @@ export const useStore = defineStore("store", {
     return {
       projects: {},
       isloading: true,
-      project: null,
+      project: {},
     };
   },
 
@@ -46,6 +46,12 @@ export const useStore = defineStore("store", {
         method: "get",
       });
       this.project = response.data.value;
+    },
+    async deleteProject(values: any) {
+      const { id } = values;
+      await useFetch(`/api/projects/${id}`, {
+        method: "delete",
+      });
     },
     updateLoadingStatus(value: boolean) {
       this.isloading = value;
