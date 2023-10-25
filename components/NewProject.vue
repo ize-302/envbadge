@@ -50,7 +50,11 @@
 </template>
 
 <script setup>
+const toast = useToast();
 const isOpen = ref(false);
+import { useStore } from "~/store";
+const store = useStore();
+
 const state = ref({
   name: "",
   base_url: "",
@@ -64,6 +68,10 @@ const validate = (state) => {
 };
 
 async function submit(event) {
-  console.log(event.data);
+  store.saveProject(event.data).then(() => {
+    isOpen.value = false;
+    store.fetchProjects();
+    toast.add({ title: "Project has been added" });
+  });
 }
 </script>
