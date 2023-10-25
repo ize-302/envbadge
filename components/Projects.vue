@@ -22,7 +22,7 @@
       size="72"
       stroke-width="1"
     />
-    You have no projects yet!
+    You have no project yet!
   </div>
 </template>
 
