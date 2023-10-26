@@ -15,6 +15,13 @@
       "when": 1698207064192,
       "tag": "0001_cultured_tusk",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1698255116008,
+      "tag": "0002_colossal_prima",
+      "breakpoints": true
     }
   ]
 }
