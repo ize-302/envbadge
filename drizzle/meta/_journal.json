@@ -22,6 +22,27 @@
       "when": 1698255116008,
       "tag": "0002_colossal_prima",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1698315949978,
+      "tag": "0003_aberrant_molly_hayes",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1698316583475,
+      "tag": "0004_noisy_malice",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1698317642081,
+      "tag": "0005_heavy_jetstream",
+      "breakpoints": true
     }
   ]
 }

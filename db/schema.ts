@@ -12,7 +12,7 @@ export const projects = pgTable("projects", {
 export const environments = pgTable("environments", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
-  description: text("description").notNull(),
+  description: text("description"),
   url: text("url").notNull(),
   project_id: text("project_id").notNull(),
   show_badge: boolean("show_badge").default(true),

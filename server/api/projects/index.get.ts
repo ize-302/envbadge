@@ -8,5 +8,5 @@ export default defineEventHandler(async (event) => {
     orderBy: [desc(projects.last_updated)],
     where: eq(projects.user_id, current_user),
   });
-  return { items: result };
+  return result;
 });

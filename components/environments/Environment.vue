@@ -4,8 +4,12 @@
     <div v-show="isOpen">
       <EnvironmentsEnvironmentForm
         @closeForm="isOpen = false"
+        @handleSubmit="(data) => handleUpdateEnvironment(data)"
         :environment="environment"
         label="Update"
+        :submitting="submitting"
+        :deleting="deleting"
+        @handleDelete="(data) => handleDeleteEnvironment(data)"
       />
     </div>
 
@@ -13,12 +17,14 @@
     <div v-show="!isOpen" class="flex items-center gap-2">
       <div class="w-5/12 flex gap-2 items-center">
         <WorldIcon class="h-6 text-primary" />
-        <p>{{ environment?.name }}</p>
-        <UTooltip
-          :text="environment?.description || 'No description available'"
-        >
-          <InfoCircleFilledIcon class="h-4" />
-        </UTooltip>
+        <div class="flex items-center truncate overflow-hidden">
+          <p class="truncate overflow-hidden">{{ environment?.name }}</p>
+          <UTooltip
+            :text="environment?.description || 'No description available'"
+          >
+            <InfoCircleFilledIcon class="h-4" />
+          </UTooltip>
+        </div>
       </div>
       <div class="w-5/12">
         <NuxtLink to="/" class="flex gap-1 items-center">
@@ -27,7 +33,11 @@
         </NuxtLink>
       </div>
       <div class="w-2/12">
-        <UToggle v-model="selected" />
+        <UToggle
+          on-icon="i-heroicons-check-20-solid"
+          off-icon="i-heroicons-x-mark-20-solid"
+          v-model="selected"
+        />
       </div>
       <UButton variant="ghost" @click="isOpen = true">
         <UIcon name="i-heroicons-chevron-down" />
@@ -37,18 +47,41 @@
 </template>
 
 <script setup>
+const toast = useToast();
 import { WorldIcon, InfoCircleFilledIcon } from "vue-tabler-icons";
-const selected = ref(false);
+import { useStore } from "~/store";
 const props = defineProps(["environment"]);
+const selected = ref(props.environment.show_badge);
 const isOpen = ref(false);
+const submitting = ref(false);
+const deleting = ref(false);
+const route = useRoute();
+const { id } = route.params;
+const store = useStore();
 
-const state = ref({
-  name: props.environment?.name ?? "",
-  url: props.environment?.url ?? "",
-  description: props.environment?.description ?? "",
+watch(selected, () => {
+  store.updateEnvironment(id.toString(), {
+    ...props.environment,
+    show_badge: selected.value,
+  });
 });
 
-const submit = () => {
-  //
-};
+async function handleDeleteEnvironment(data) {
+  deleting.value = true;
+  store.deleteEnvironment(data).then(() => {
+    isOpen.value = false;
+    store.fetchEnvironments(id.toString());
+    deleting.value = false;
+  });
+}
+
+async function handleUpdateEnvironment(data) {
+  submitting.value = true;
+  store.updateEnvironment(id.toString(), data).then(() => {
+    isOpen.value = false;
+    store.fetchEnvironments(id.toString());
+    submitting.value = false;
+    toast.add({ title: "Environment has been updatd" });
+  });
+}
 </script>
