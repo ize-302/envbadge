@@ -37,6 +37,8 @@
 </template>
 
 <script setup>
+import NewProjectForm from "~/components/project/NewProjectForm.vue";
+
 const toast = useToast();
 const isOpen = ref(false);
 import { useStore } from "~/store";

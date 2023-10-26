@@ -27,7 +27,6 @@
         friendly heads-up whenever it's not in production mode.
       </p>
     </div>
-
     <div></div>
   </div>
 </template>

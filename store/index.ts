@@ -4,24 +4,30 @@ interface IState {
   projects: any;
   isloading: boolean;
   project: object | null;
+  environments: any;
 }
 
 export const useStore = defineStore("store", {
   state: (): IState => {
     return {
-      projects: {},
+      projects: [],
       isloading: true,
       project: {},
+      environments: [],
     };
   },
 
   getters: {
+    // projects
     getProjects: (state) => state.projects,
     getLoadingStatus: (state) => state.isloading,
     getProject: (state) => state.project,
+    // environments
+    getEnvironments: (state) => state.environments,
   },
 
   actions: {
+    // projects
     async fetchProjects() {
       const { data, error, pending, refresh } = await useFetch("/api/projects");
       this.projects = data.value;
@@ -53,6 +59,38 @@ export const useStore = defineStore("store", {
         method: "delete",
       });
     },
+    // environments
+    async fetchEnvironments(project_id: string) {
+      const { data, error, pending, refresh } = await useFetch(
+        `/api/environments?project_id=${project_id}`
+      );
+      this.environments = data.value;
+    },
+    async saveEnvironment(project_id: string, values: any) {
+      const { name, url, description } = values;
+      const { data, error, pending, refresh } = await useFetch(
+        `/api/environments?project_id=${project_id}`,
+        {
+          method: "post",
+          body: { name, url, description },
+        }
+      );
+    },
+    async updateEnvironment(project_id: string, payload: any) {
+      await useFetch(
+        `/api/environments?project_id=${project_id}&environment_id=${payload.id}`,
+        {
+          method: "put",
+          body: payload,
+        }
+      );
+    },
+    async deleteEnvironment(environment_id: string) {
+      await useFetch(`/api/environments?environment_id=${environment_id}`, {
+        method: "delete",
+      });
+    },
+    // misc
     updateLoadingStatus(value: boolean) {
       this.isloading = value;
     },
