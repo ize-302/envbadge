@@ -7,7 +7,7 @@ export default defineEventHandler(async (event) => {
   const { project_id } = query;
 
   const result = await db.query.environments.findMany({
-    where: eq(environments.project_id, project_id),
+    where: eq(environments.project_id, project_id as number),
   });
   return result;
 });

@@ -13,8 +13,8 @@ export default defineEventHandler(async (event) => {
     .set(body)
     .where(
       and(
-        eq(environments.project_id, project_id),
-        eq(environments.id, environment_id)
+        eq(environments.project_id, project_id as number),
+        eq(environments.id, environment_id as number)
       )
     );
   setResponseStatus(event, 204);

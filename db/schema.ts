@@ -1,4 +1,11 @@
-import { pgTable, serial, text, timestamp, boolean } from "drizzle-orm/pg-core";
+import {
+  pgTable,
+  serial,
+  text,
+  timestamp,
+  boolean,
+  integer,
+} from "drizzle-orm/pg-core";
 
 export const projects = pgTable("projects", {
   id: serial("id").primaryKey(),
@@ -14,6 +21,6 @@ export const environments = pgTable("environments", {
   name: text("name").notNull(),
   description: text("description"),
   url: text("url").notNull(),
-  project_id: text("project_id").notNull(),
+  project_id: integer("project_id").notNull(),
   show_badge: boolean("show_badge").default(true),
 });

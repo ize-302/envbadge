@@ -60,7 +60,7 @@ const { id } = route.params;
 const store = useStore();
 
 watch(selected, () => {
-  store.updateEnvironment(id.toString(), {
+  store.updateEnvironment(id, {
     ...props.environment,
     show_badge: selected.value,
   });
@@ -70,16 +70,16 @@ async function handleDeleteEnvironment(data) {
   deleting.value = true;
   store.deleteEnvironment(data).then(() => {
     isOpen.value = false;
-    store.fetchEnvironments(id.toString());
+    store.fetchEnvironments(id);
     deleting.value = false;
   });
 }
 
 async function handleUpdateEnvironment(data) {
   submitting.value = true;
-  store.updateEnvironment(id.toString(), data).then(() => {
+  store.updateEnvironment(id, data).then(() => {
     isOpen.value = false;
-    store.fetchEnvironments(id.toString());
+    store.fetchEnvironments(id);
     submitting.value = false;
     toast.add({ title: "Environment has been updatd" });
   });

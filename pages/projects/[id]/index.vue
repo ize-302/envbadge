@@ -60,14 +60,14 @@ const submitting = ref(false);
 const toast = useToast();
 
 store
-  .fetchEnvironments(id.toString())
+  .fetchEnvironments(id as string)
   .then(() => store.updateLoadingStatus(false));
 
 async function handleSubmission(data: any) {
   submitting.value = true;
-  store.saveEnvironment(id.toString(), data).then(() => {
+  store.saveEnvironment(id as string, data).then(() => {
     isOpen.value = false;
-    store.fetchEnvironments(id.toString());
+    store.fetchEnvironments(id as string);
     submitting.value = false;
     toast.add({ title: "Environment has been added" });
   });
