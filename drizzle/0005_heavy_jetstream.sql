@@ -1,1 +1,0 @@
-ALTER TABLE "environments" ALTER COLUMN "description" DROP NOT NULL;
