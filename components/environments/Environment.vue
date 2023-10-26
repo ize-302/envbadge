@@ -77,9 +77,9 @@ async function handleDeleteEnvironment(data) {
 
 async function handleUpdateEnvironment(data) {
   submitting.value = true;
-  store.updateEnvironment(id, data).then(() => {
+  await store.updateEnvironment(id, data).then(async () => {
     isOpen.value = false;
-    store.fetchEnvironments(id);
+    await store.fetchEnvironments(id);
     submitting.value = false;
     toast.add({ title: "Environment has been updatd" });
   });

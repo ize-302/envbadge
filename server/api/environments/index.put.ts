@@ -7,7 +7,6 @@ export default defineEventHandler(async (event) => {
   const { project_id, environment_id } = query;
   const body = await readBody(event);
 
-  console.log(body);
   await db
     .update(environments)
     .set(body)
