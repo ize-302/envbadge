@@ -50,6 +50,7 @@
 <script setup lang="ts">
 import { ArchiveOffIcon } from "vue-tabler-icons";
 import Environment from "~/components/environments/Environment.vue";
+import type { IProject } from "~/db/schema";
 import Project from "~/layouts/project.vue";
 import { useStore } from "~/store";
 const store = useStore();
@@ -63,7 +64,7 @@ store
   .fetchEnvironments(id as string)
   .then(() => store.updateLoadingStatus(false));
 
-async function handleSubmission(data: any) {
+async function handleSubmission(data: IProject) {
   submitting.value = true;
   await store.saveEnvironment(id as string, data).then(async () => {
     isOpen.value = false;

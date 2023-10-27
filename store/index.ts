@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-
+import type { IEnvironment, IProject } from "~/db/schema";
 interface IState {
   projects: any;
   isloading: boolean;
@@ -32,29 +32,27 @@ export const useStore = defineStore("store", {
       const { data, error, pending, refresh } = await useFetch("/api/projects");
       this.projects = data.value;
     },
-    async saveProject(values: any) {
+    async saveProject(values: IProject) {
       const { name, base_url } = values;
       await useFetch("/api/projects", {
         method: "post",
         body: { name, base_url },
       });
     },
-    async updateProject(values: any) {
+    async updateProject(values: IProject) {
       const { name, base_url, id } = values;
       await useFetch(`/api/projects/${id}`, {
         method: "put",
         body: { name, base_url },
       });
     },
-    async fetchProject(values: any) {
-      const { id } = values;
+    async fetchProject(id: number) {
       const response = await useFetch(`/api/projects/${id}`, {
         method: "get",
       });
       this.project = response.data.value;
     },
-    async deleteProject(values: any) {
-      const { id } = values;
+    async deleteProject(id: number) {
       await useFetch(`/api/projects/${id}`, {
         method: "delete",
       });
@@ -66,7 +64,7 @@ export const useStore = defineStore("store", {
       );
       this.environments = data.value;
     },
-    async saveEnvironment(project_id: string, values: any) {
+    async saveEnvironment(project_id: string, values: IEnvironment) {
       const { name, url, description } = values;
       const { data, error, pending, refresh } = await useFetch(
         `/api/environments?project_id=${project_id}`,
@@ -76,7 +74,7 @@ export const useStore = defineStore("store", {
         }
       );
     },
-    async updateEnvironment(project_id: string, payload: any) {
+    async updateEnvironment(project_id: string, payload: IEnvironment) {
       await useFetch(
         `/api/environments?project_id=${project_id}&environment_id=${payload.id}`,
         {

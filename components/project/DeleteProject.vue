@@ -88,7 +88,7 @@ const toast = useToast();
 
 const handleDelete = () => {
   submitting.value = true;
-  store.deleteProject({ id }).then(() => {
+  store.deleteProject(Number(id)).then(() => {
     submitting.value = false;
     toast.add({ title: "Project has been deleted" });
     isOpen.value = false;
