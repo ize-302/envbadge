@@ -58,13 +58,13 @@ export const useStore = defineStore("store", {
       });
     },
     // environments
-    async fetchEnvironments(project_id: string) {
+    async fetchEnvironments(project_id: number) {
       const { data, error, pending, refresh } = await useFetch(
         `/api/environments?project_id=${project_id}`
       );
       this.environments = data.value;
     },
-    async saveEnvironment(project_id: string, values: IEnvironment) {
+    async saveEnvironment(project_id: number, values: any) {
       const { name, url, description } = values;
       const { data, error, pending, refresh } = await useFetch(
         `/api/environments?project_id=${project_id}`,
@@ -74,7 +74,7 @@ export const useStore = defineStore("store", {
         }
       );
     },
-    async updateEnvironment(project_id: string, payload: IEnvironment) {
+    async updateEnvironment(project_id: number, payload: IEnvironment) {
       await useFetch(
         `/api/environments?project_id=${project_id}&environment_id=${payload.id}`,
         {
@@ -83,7 +83,7 @@ export const useStore = defineStore("store", {
         }
       );
     },
-    async deleteEnvironment(environment_id: string) {
+    async deleteEnvironment(environment_id: number) {
       await useFetch(`/api/environments?environment_id=${environment_id}`, {
         method: "delete",
       });

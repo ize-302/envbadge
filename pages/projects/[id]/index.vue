@@ -60,15 +60,17 @@ const { id } = route.params;
 const submitting = ref(false);
 const toast = useToast();
 
+store.fetchProject(Number(id));
+
 store
-  .fetchEnvironments(id as string)
+  .fetchEnvironments(Number(id))
   .then(() => store.updateLoadingStatus(false));
 
 async function handleSubmission(data: IProject) {
   submitting.value = true;
-  await store.saveEnvironment(id as string, data).then(async () => {
+  await store.saveEnvironment(Number(id), data).then(async () => {
     isOpen.value = false;
-    await store.fetchEnvironments(id as string);
+    await store.fetchEnvironments(Number(id));
     submitting.value = false;
     toast.add({ title: "Environment has been added" });
   });
