@@ -69,8 +69,8 @@ store
 async function handleSubmission(data: IProject) {
   submitting.value = true;
   await store.saveEnvironment(Number(id), data).then(async () => {
-    isOpen.value = false;
     await store.fetchEnvironments(Number(id));
+    isOpen.value = false;
     submitting.value = false;
     toast.add({ title: "Environment has been added" });
   });
