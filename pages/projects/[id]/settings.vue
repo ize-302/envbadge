@@ -33,16 +33,17 @@ import DeleteProject from "~/components/project/DeleteProject.vue";
 const toast = useToast();
 import Project from "~/layouts/project.vue";
 import { useStore } from "~/store";
+import type { IProject } from "~/db/schema";
 const store = useStore();
 const route = useRoute();
 const { id } = route.params;
 const submitting = ref(false);
 
-store.fetchProject({ id });
+store.fetchProject(Number(id));
 
-const handleSubmission = (data: any) => {
+const handleSubmission = (data: IProject) => {
   submitting.value = true;
-  data = { ...data, id };
+  data = { ...data, id: Number(id) };
   const updateddata = toRaw(data);
   store.updateProject(updateddata).then(() => {
     submitting.value = false;

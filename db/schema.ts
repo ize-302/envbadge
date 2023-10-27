@@ -24,3 +24,22 @@ export const environments = pgTable("environments", {
   project_id: integer("project_id").notNull(),
   show_badge: boolean("show_badge").default(true),
 });
+
+// interfaces
+export interface IProject {
+  id: number;
+  name: string;
+  base_url: string;
+  user_id: string;
+  created_at: Date;
+  last_updated: Date;
+}
+
+export interface IEnvironment {
+  id: number;
+  name: string;
+  description: string;
+  url: string;
+  project_id: string;
+  show_badge: boolean;
+}
