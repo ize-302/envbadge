@@ -39,8 +39,6 @@ const route = useRoute();
 const { id } = route.params;
 const submitting = ref(false);
 
-store.fetchProject(Number(id));
-
 const handleSubmission = (data: IProject) => {
   submitting.value = true;
   data = { ...data, id: Number(id) };

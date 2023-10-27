@@ -23,6 +23,7 @@ export const environments = pgTable("environments", {
   url: text("url").notNull(),
   project_id: integer("project_id").notNull(),
   show_badge: boolean("show_badge").default(true),
+  created_at: timestamp("created_at").defaultNow(),
 });
 
 // interfaces
