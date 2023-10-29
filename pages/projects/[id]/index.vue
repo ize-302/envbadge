@@ -26,7 +26,16 @@
           />
         </div>
       </div>
+
+      <USkeleton
+        v-show="store.getLoadingStatus"
+        v-for="item in Array.apply(null, Array(5))"
+        class="h-10 m-5"
+        :ui="{ rounded: 'rounded-md' }"
+      />
+
       <Environment
+        v-show="!store.getLoadingStatus"
         v-for="(environment, index) in environments"
         :key="index"
         :environment="environment"
@@ -61,13 +70,11 @@ const submitting = ref(false);
 const toast = useToast();
 const environments: any = ref([]);
 
-onMounted(() => {
-  store.fetchProject(Number(id));
+store.fetchProject(Number(id));
 
-  store.fetchEnvironments(Number(id)).then((result) => {
-    environments.value = result;
-    store.updateLoadingStatus(false);
-  });
+store.fetchEnvironments(Number(id)).then((result) => {
+  environments.value = result;
+  store.updateLoadingStatus(false);
 });
 
 async function handleSubmission(data: IProject) {

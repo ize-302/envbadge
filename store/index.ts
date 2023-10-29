@@ -55,6 +55,7 @@ export const useStore = defineStore("store", {
     },
     // environments
     async fetchEnvironments(project_id: number) {
+      this.isloading = true;
       const { data, error, pending, refresh } = await useFetch(
         `/api/environments?project_id=${project_id}`
       );
