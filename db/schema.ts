@@ -3,7 +3,6 @@ import { pgTable, text, timestamp, boolean, uuid } from "drizzle-orm/pg-core";
 export const projects = pgTable("projects", {
   id: uuid("id").defaultRandom().primaryKey(),
   name: text("name"),
-  base_url: text("base_url"),
   user_id: text("user_id"),
   created_at: timestamp("created_at").defaultNow(),
   last_updated: timestamp("last_updated").defaultNow(),
@@ -23,7 +22,6 @@ export const environments = pgTable("environments", {
 export interface IProject {
   id: string;
   name: string;
-  base_url: string;
   user_id: string;
   created_at: Date;
   last_updated: Date;

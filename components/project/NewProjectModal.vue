@@ -47,13 +47,6 @@ const submitting = ref(false);
 
 const state = ref({});
 
-const validate = (state) => {
-  const errors = [];
-  if (!state.name) errors.push({ path: "name", message: "Required" });
-  if (!state.base_url) errors.push({ path: "base_url", message: "Required" });
-  return errors;
-};
-
 async function handleSubmission(data) {
   submitting.value = true;
   store.saveProject(data).then(() => {

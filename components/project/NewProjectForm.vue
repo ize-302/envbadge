@@ -9,10 +9,6 @@
       <UInput v-model="state.name" />
     </UFormGroup>
 
-    <UFormGroup label="URL" name="base_url">
-      <UInput v-model="state.base_url" />
-    </UFormGroup>
-
     <UFormGroup>
       <UButton
         :loading="submitting"
@@ -28,13 +24,11 @@
 const props = defineProps(["submitting", "label", "initialData"]);
 const state = ref({
   name: props.initialData.name || "",
-  base_url: props.initialData.base_url || "",
 });
 
 const validate = (state) => {
   const errors = [];
   if (!state.name) errors.push({ path: "name", message: "Required" });
-  if (!state.base_url) errors.push({ path: "base_url", message: "Required" });
   return errors;
 };
 </script>
