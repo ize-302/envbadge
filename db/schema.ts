@@ -5,10 +5,12 @@ import {
   timestamp,
   boolean,
   integer,
+  uuid,
 } from "drizzle-orm/pg-core";
 
 export const projects = pgTable("projects", {
-  id: serial("id").primaryKey(),
+  id: uuid("id").defaultRandom().primaryKey(),
+  // id: serial("id").primaryKey(),
   name: text("name"),
   base_url: text("base_url"),
   user_id: text("user_id"),
@@ -17,18 +19,18 @@ export const projects = pgTable("projects", {
 });
 
 export const environments = pgTable("environments", {
-  id: serial("id").primaryKey(),
+  id: uuid("id").defaultRandom().primaryKey(),
   name: text("name").notNull(),
   description: text("description"),
   url: text("url").notNull(),
-  project_id: integer("project_id").notNull(),
+  project_id: uuid("project_id").notNull(),
   show_badge: boolean("show_badge").default(true),
   created_at: timestamp("created_at").defaultNow(),
 });
 
 // interfaces
 export interface IProject {
-  id: number;
+  id: string;
   name: string;
   base_url: string;
   user_id: string;
@@ -37,7 +39,7 @@ export interface IProject {
 }
 
 export interface IEnvironment {
-  id: number;
+  id: string;
   name: string;
   description: string;
   url: string;

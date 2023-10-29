@@ -41,7 +41,7 @@ const submitting = ref(false);
 
 const handleSubmission = (data: IProject) => {
   submitting.value = true;
-  data = { ...data, id: Number(id) };
+  data = { ...data, id: id as string };
   const updateddata = toRaw(data);
   store.updateProject(updateddata).then(() => {
     submitting.value = false;
