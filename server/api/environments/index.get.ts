@@ -8,7 +8,7 @@ export default defineEventHandler(async (event) => {
 
   const result = await db.query.environments.findMany({
     orderBy: [desc(environments.created_at)],
-    where: eq(environments.project_id, project_id as number),
+    where: eq(environments.project_id, project_id as string),
   });
   return result;
 });

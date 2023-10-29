@@ -7,6 +7,6 @@ export default defineEventHandler(async (event) => {
   const { environment_id } = query;
   await db
     .delete(environments)
-    .where(eq(environments.id, environment_id as number));
+    .where(eq(environments.id, environment_id as string));
   setResponseStatus(event, 204);
 });

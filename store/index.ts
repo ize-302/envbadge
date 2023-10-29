@@ -42,26 +42,26 @@ export const useStore = defineStore("store", {
         body: { name, base_url },
       });
     },
-    async fetchProject(id: number) {
+    async fetchProject(id: string) {
       const response = await useFetch(`/api/projects/${id}`, {
         method: "get",
       });
       this.project = response.data.value;
     },
-    async deleteProject(id: number) {
+    async deleteProject(id: string) {
       await useFetch(`/api/projects/${id}`, {
         method: "delete",
       });
     },
     // environments
-    async fetchEnvironments(project_id: number) {
+    async fetchEnvironments(project_id: string) {
       this.isloading = true;
       const { data, error, pending, refresh } = await useFetch(
         `/api/environments?project_id=${project_id}`
       );
       return data.value;
     },
-    async saveEnvironment(project_id: number, values: any) {
+    async saveEnvironment(project_id: string, values: any) {
       const { name, url, description } = values;
       const { data, error, pending, refresh } = await useFetch(
         `/api/environments?project_id=${project_id}`,
@@ -71,7 +71,7 @@ export const useStore = defineStore("store", {
         }
       );
     },
-    async updateEnvironment(project_id: number, payload: IEnvironment) {
+    async updateEnvironment(project_id: string, payload: IEnvironment) {
       await useFetch(
         `/api/environments?project_id=${project_id}&environment_id=${payload.id}`,
         {
@@ -80,7 +80,7 @@ export const useStore = defineStore("store", {
         }
       );
     },
-    async deleteEnvironment(environment_id: number) {
+    async deleteEnvironment(environment_id: string) {
       await useFetch(`/api/environments?environment_id=${environment_id}`, {
         method: "delete",
       });

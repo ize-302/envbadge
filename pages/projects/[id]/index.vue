@@ -70,17 +70,17 @@ const submitting = ref(false);
 const toast = useToast();
 const environments: any = ref([]);
 
-store.fetchProject(Number(id));
+store.fetchProject(id.toString());
 
-store.fetchEnvironments(Number(id)).then((result) => {
+store.fetchEnvironments(id.toString()).then((result) => {
   environments.value = result;
   store.updateLoadingStatus(false);
 });
 
 async function handleSubmission(data: IProject) {
   submitting.value = true;
-  await store.saveEnvironment(Number(id), data).then(async () => {
-    await store.fetchEnvironments(Number(id));
+  await store.saveEnvironment(id.toString(), data).then(async () => {
+    await store.fetchEnvironments(id.toString());
     isOpen.value = false;
     submitting.value = false;
     toast.add({ title: "Environment has been added" });

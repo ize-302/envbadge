@@ -3,12 +3,14 @@ import { db } from "~/db";
 import { projects } from "~/db/schema";
 
 export default defineEventHandler(async (event) => {
-  const id = Number(getRouterParam(event, "id"));
+  const id = getRouterParam(event, "id");
   const current_user = event.context.auth.user_id;
   const body = await readBody(event);
   await db
     .update(projects)
     .set(body)
-    .where(and(eq(projects.id, id), eq(projects.user_id, current_user)));
+    .where(
+      and(eq(projects.id, id as string), eq(projects.user_id, current_user))
+    );
   setResponseStatus(event, 204);
 });
