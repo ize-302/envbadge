@@ -1,16 +1,7 @@
-import {
-  pgTable,
-  serial,
-  text,
-  timestamp,
-  boolean,
-  integer,
-  uuid,
-} from "drizzle-orm/pg-core";
+import { pgTable, text, timestamp, boolean, uuid } from "drizzle-orm/pg-core";
 
 export const projects = pgTable("projects", {
   id: uuid("id").defaultRandom().primaryKey(),
-  // id: serial("id").primaryKey(),
   name: text("name"),
   base_url: text("base_url"),
   user_id: text("user_id"),
@@ -45,4 +36,5 @@ export interface IEnvironment {
   url: string;
   project_id: string;
   show_badge: boolean;
+  created_at: Date;
 }
