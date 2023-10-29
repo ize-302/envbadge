@@ -26,14 +26,23 @@
           />
         </div>
       </div>
+
+      <USkeleton
+        v-show="store.getLoadingStatus"
+        v-for="item in Array.apply(null, Array(5))"
+        class="h-10 m-5"
+        :ui="{ rounded: 'rounded-md' }"
+      />
+
       <Environment
-        v-for="(environment, index) in store.getEnvironments"
+        v-show="!store.getLoadingStatus"
+        v-for="(environment, index) in environments"
         :key="index"
         :environment="environment"
       />
 
       <div
-        v-show="!store.getLoadingStatus && store.getEnvironments.length === 0"
+        v-show="!store.getLoadingStatus && environments.length === 0"
         class="pt-10 mb-10 flex flex-col justify-center items-center w-full gap-5 text-slate-400 dark:text-gray-600"
       >
         <ArchiveOffIcon
@@ -50,7 +59,7 @@
 <script setup lang="ts">
 import { ArchiveOffIcon } from "vue-tabler-icons";
 import Environment from "~/components/environments/Environment.vue";
-import type { IProject } from "~/db/schema";
+import type { IEnvironment, IProject } from "~/db/schema";
 import Project from "~/layouts/project.vue";
 import { useStore } from "~/store";
 const store = useStore();
@@ -59,12 +68,14 @@ const route = useRoute();
 const { id } = route.params;
 const submitting = ref(false);
 const toast = useToast();
+const environments: any = ref([]);
 
 store.fetchProject(Number(id));
 
-store
-  .fetchEnvironments(Number(id))
-  .then(() => store.updateLoadingStatus(false));
+store.fetchEnvironments(Number(id)).then((result) => {
+  environments.value = result;
+  store.updateLoadingStatus(false);
+});
 
 async function handleSubmission(data: IProject) {
   submitting.value = true;
