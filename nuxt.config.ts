@@ -8,8 +8,4 @@ export default defineNuxtConfig({
     origin: AUTH_ORIGIN,
     basePath: "/api/auth/callback/github",
   },
-  routeRules: {
-    // Add cors headers on API routes
-    "/api/**": { cors: false },
-  },
 });
