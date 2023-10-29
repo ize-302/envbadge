@@ -4,7 +4,6 @@ interface IState {
   projects: any;
   isloading: boolean;
   project: object | null;
-  environments: any;
 }
 
 export const useStore = defineStore("store", {
@@ -13,7 +12,6 @@ export const useStore = defineStore("store", {
       projects: [],
       isloading: true,
       project: {},
-      environments: [],
     };
   },
 
@@ -22,8 +20,6 @@ export const useStore = defineStore("store", {
     getProjects: (state) => state.projects,
     getLoadingStatus: (state) => state.isloading,
     getProject: (state) => state.project,
-    // environments
-    getEnvironments: (state) => state.environments,
   },
 
   actions: {
@@ -62,7 +58,7 @@ export const useStore = defineStore("store", {
       const { data, error, pending, refresh } = await useFetch(
         `/api/environments?project_id=${project_id}`
       );
-      this.environments = data.value;
+      return data.value;
     },
     async saveEnvironment(project_id: number, values: any) {
       const { name, url, description } = values;
