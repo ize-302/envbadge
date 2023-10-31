@@ -13,6 +13,12 @@ useHead({
   titleTemplate: (titleChunk) => {
     return titleChunk ? `${titleChunk} - EnvBadge` : "EnvBadge";
   },
+  script: [
+    {
+      src: "https://cdn.jsdelivr.net/npm/envbadge-js@v0.0.3/script.js?projectId=9e047058-afa8-4657-b7fa-bc3519ac528a",
+      body: false,
+    },
+  ],
   link: [
     {
       rel: "preconnect",
