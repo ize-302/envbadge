@@ -29,17 +29,17 @@ export const useStore = defineStore("store", {
       this.projects = data.value;
     },
     async saveProject(values: IProject) {
-      const { name, base_url } = values;
+      const { name } = values;
       await useFetch("/api/projects", {
         method: "post",
-        body: { name, base_url },
+        body: { name },
       });
     },
     async updateProject(values: IProject) {
-      const { name, base_url, id } = values;
+      const { name, id } = values;
       await useFetch(`/api/projects/${id}`, {
         method: "put",
-        body: { name, base_url },
+        body: { name },
       });
     },
     async fetchProject(id: string) {

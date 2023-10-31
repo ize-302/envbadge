@@ -29,6 +29,13 @@
       "when": 1698579391234,
       "tag": "0003_nosy_zaladane",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1698582933001,
+      "tag": "0004_illegal_zombie",
+      "breakpoints": true
     }
   ]
 }
