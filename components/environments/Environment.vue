@@ -58,6 +58,7 @@ const deleting = ref(false);
 const route = useRoute();
 const { id } = route.params;
 const store = useStore();
+const emit = defineEmits();
 
 watch(selected, () => {
   store.updateEnvironment(id, {
@@ -68,20 +69,21 @@ watch(selected, () => {
 
 async function handleDeleteEnvironment(data) {
   deleting.value = true;
-  store.deleteEnvironment(data).then(() => {
+  await store.deleteEnvironment(data).then(async () => {
     isOpen.value = false;
-    store.fetchEnvironments(id);
     deleting.value = false;
+    emit("refresh");
+    toast.add({ title: "Environment has been deleted" });
   });
 }
 
 async function handleUpdateEnvironment(data) {
   submitting.value = true;
   await store.updateEnvironment(id, data).then(async () => {
-    await store.fetchEnvironments(id);
-    submitting.value = false;
-    toast.add({ title: "Environment has been updatd" });
     isOpen.value = false;
+    submitting.value = false;
+    emit("refresh");
+    toast.add({ title: "Environment has been updatd" });
   });
 }
 </script>

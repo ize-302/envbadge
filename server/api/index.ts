@@ -15,7 +15,6 @@ export default defineEventHandler(async (event) => {
   if (!id || !from) {
     return setResponseStatus(event, 405, "not allowed");
   }
-  console.log(query);
 
   const result = await db.query.environments.findFirst({
     where: and(

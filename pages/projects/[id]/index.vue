@@ -39,6 +39,7 @@
         v-for="(environment, index) in environments"
         :key="index"
         :environment="environment"
+        @refresh="handleFetchEnvironments"
       />
 
       <div
@@ -59,7 +60,7 @@
 <script setup lang="ts">
 import { ArchiveOffIcon } from "vue-tabler-icons";
 import Environment from "~/components/environments/Environment.vue";
-import type { IEnvironment, IProject } from "~/db/schema";
+import type { IProject } from "~/db/schema";
 import Project from "~/layouts/project.vue";
 import { useStore } from "~/store";
 const store = useStore();
@@ -70,17 +71,20 @@ const submitting = ref(false);
 const toast = useToast();
 const environments: any = ref([]);
 
-store.fetchProject(id.toString());
+const handleFetchEnvironments = async () => {
+  await store.fetchEnvironments(id.toString()).then((result) => {
+    environments.value = result;
+    store.updateLoadingStatus(false);
+  });
+};
 
-store.fetchEnvironments(id.toString()).then((result) => {
-  environments.value = result;
-  store.updateLoadingStatus(false);
-});
+handleFetchEnvironments();
+store.fetchProject(id.toString());
 
 async function handleSubmission(data: IProject) {
   submitting.value = true;
   await store.saveEnvironment(id.toString(), data).then(async () => {
-    await store.fetchEnvironments(id.toString());
+    handleFetchEnvironments();
     isOpen.value = false;
     submitting.value = false;
     toast.add({ title: "Environment has been added" });
