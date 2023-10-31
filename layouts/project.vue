@@ -34,11 +34,5 @@ const links = [
     to: `/projects/${id}/settings`,
     class: "!py-2",
   },
-  {
-    label: "Setup",
-    icon: "i-heroicons-wrench-screwdriver",
-    to: `/projects/${id}/setup`,
-    class: "!py-2",
-  },
 ];
 </script>
