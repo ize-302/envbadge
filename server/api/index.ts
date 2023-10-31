@@ -18,8 +18,8 @@ export default defineEventHandler(async (event) => {
 
   const result = await db.query.environments.findFirst({
     where: and(
-      eq(environments.project_id, id as string)
-      // eq(environments.url, from as string)
+      eq(environments.project_id, id as string),
+      eq(environments.url, from as string)
     ),
   });
   if (!result) {
