@@ -33,6 +33,7 @@
     "next-auth": "4.21.1",
     "pg": "^8.11.3",
     "pinia": "^2.1.7",
+    "prismjs": "^1.29.0",
     "vue-tabler-icons": "^2.21.0"
   }
 }

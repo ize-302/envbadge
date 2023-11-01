@@ -17,14 +17,10 @@
     </div>
 
     <div class="flex flex-col items-center gap-5 -mt-32">
-      <h1
-        class="text-4xl text-center justify-center dark:text-white font-semibold font-jakarta"
+      <p
+        class="text-4xl max-w-xl text-center font-jakarta dark:text-white font-semibold"
       >
-        You are in a safe environment 👌!
-      </h1>
-      <p class="text-xl max-w-xl text-center font-jakarta opacity-80">
-        EnvBadge keeps a watchful eye on your app's environments and gives you a
-        friendly heads-up whenever it's not in production mode.
+        Know your current working web environment at a glance 👌
       </p>
     </div>
     <div></div>

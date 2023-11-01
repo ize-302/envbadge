@@ -27,7 +27,7 @@
         size="72"
         stroke-width="1"
       />
-      You have no project yet!
+      Create your first project
     </div>
   </div>
 </template>
