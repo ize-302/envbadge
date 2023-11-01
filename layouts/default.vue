@@ -15,7 +15,7 @@ useHead({
   },
   script: [
     {
-      src: "https://cdn.jsdelivr.net/npm/envbadge-js@v0.0.3/script.js?projectId=9e047058-afa8-4657-b7fa-bc3519ac528a",
+      src: "https://cdn.jsdelivr.net/npm/envbadge-js@v0.0.3/script.js?projectId=29fb7f42-3869-42ec-ad5d-52f75c7e3b04",
       body: false,
     },
   ],
