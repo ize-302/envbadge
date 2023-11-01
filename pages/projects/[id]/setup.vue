@@ -27,7 +27,7 @@ import Project from "~/layouts/project.vue";
 const route = useRoute();
 const { id } = route.params;
 import Prism from "prismjs";
-import "~/assets/css/dracula.css";
+import "~/assets/css/material-dark.css";
 
 onMounted(() => {
   Prism.highlightAll();
