@@ -1,6 +1,6 @@
 <template>
   <div class="flex w-full mt-5 gap-10">
-    <UVerticalNavigation class="w-4/12 flex flex-col" :links="links" />
+    <UVerticalNavigation class="min-w-[220px] flex flex-col" :links="links" />
     <div class="w-full">
       <slot />
     </div>
@@ -32,6 +32,12 @@ const links = [
     label: "Settings",
     icon: "i-heroicons-cog-6-tooth",
     to: `/projects/${id}/settings`,
+    class: "!py-2",
+  },
+  {
+    label: "Setup",
+    icon: "i-heroicons-wrench-screwdriver",
+    to: `/projects/${id}/setup`,
     class: "!py-2",
   },
 ];
