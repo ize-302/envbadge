@@ -51,7 +51,7 @@
           size="72"
           stroke-width="1"
         />
-        You have no environment yet!
+        Create your first environment
       </div>
     </div>
   </Project>
