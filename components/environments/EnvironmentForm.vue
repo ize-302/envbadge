@@ -9,7 +9,11 @@
       <UFormGroup class="w-1/2" label="Name" name="name">
         <UInput v-model="state.name" />
       </UFormGroup>
-      <UFormGroup class="w-1/2" label="URL" name="url">
+      <UFormGroup
+        class="w-1/2"
+        label="URL - (Without http://, https://)"
+        name="url"
+      >
         <UInput v-model="state.url" />
       </UFormGroup>
     </div>
