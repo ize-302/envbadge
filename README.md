@@ -10,3 +10,9 @@ EnvBadge keeps you informed about your current environment at a glance.
    - URL is simply the url hosting the environment for example localhost:3000, 127.0.0.1:5500, dev.website.com, staging.website.com
 3. Go to the project's setup tab and copy the code snippet. This should be placed right before the closing `</body>` of your website or app. And you are done.
 4. You can toggle the visibility if the badge for any environment, if you want to
+
+#### Upcoming features
+
+[ - ] Badge styles including watermark
+[ - ] Custom badge position
+[ - ] Custom message
