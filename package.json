@@ -19,6 +19,7 @@
     "@types/web": "^0.0.118",
     "drizzle-kit": "^0.19.13",
     "nuxt": "^3.8.0",
+    "nuxt-vercel-analytics": "^0.2.2",
     "vue": "^3.3.4",
     "vue-router": "^4.2.5"
   },
@@ -26,7 +27,6 @@
     "@neondatabase/serverless": "^0.6.0",
     "@nuxt/ui": "^2.9.0",
     "@pinia/nuxt": "^0.5.1",
-    "@vercel/analytics": "^1.1.1",
     "axios": "^1.5.1",
     "drizzle-orm": "^0.28.6",
     "http-proxy": "^1.18.1",
