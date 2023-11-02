@@ -18,6 +18,6 @@ EnvBadge keeps you informed about your current environment at a glance.
 
 #### Upcoming features
 
-[ - ] Badge styles including watermark
-[ - ] Custom badge position
-[ - ] Custom message
+- [ - ] Badge styles including watermark
+- [ - ] Custom badge position
+- [ - ] Custom message
