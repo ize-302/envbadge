@@ -24,6 +24,23 @@
         <UInput v-model="state.url" />
       </UFormGroup>
     </div>
+    <UFormGroup name="custom_message">
+      <div class="text-sm flex items-center text-white mb-1">
+        <span>Custom message</span>
+        <span>
+          <UTooltip
+            :popper="{ placement: 'right' }"
+            text="The tag {{environment}} represents the environment name"
+          >
+            <InfoCircleFilledIcon class="h-4" />
+          </UTooltip>
+        </span>
+      </div>
+      <UInput
+        v-model="state.custom_message"
+        placeholder="You are viewing {{environment}} mode"
+      />
+    </UFormGroup>
     <UFormGroup label="Description" name="description">
       <UTextarea v-model="state.description" />
     </UFormGroup>
@@ -57,6 +74,7 @@ const state = ref({
   name: props.environment?.name || "",
   url: props.environment?.url || "",
   description: props.environment?.description || "",
+  custom_message: props.environment?.custom_message || "",
 });
 
 const validate = (state) => {

@@ -16,6 +16,9 @@ export const environments = pgTable("environments", {
   project_id: uuid("project_id").notNull(),
   show_badge: boolean("show_badge").default(true),
   created_at: timestamp("created_at").defaultNow(),
+  custom_message: text("custom_message").default(
+    "You are viewing {{environment}} mode"
+  ),
 });
 
 // interfaces
