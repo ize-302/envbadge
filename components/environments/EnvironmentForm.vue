@@ -9,11 +9,18 @@
       <UFormGroup class="w-1/2" label="Name" name="name">
         <UInput v-model="state.name" />
       </UFormGroup>
-      <UFormGroup
-        class="w-1/2"
-        label="URL - (Without http://, https://)"
-        name="url"
-      >
+      <UFormGroup class="w-1/2" name="url">
+        <div class="text-sm flex items-center text-white mb-1">
+          URL
+          <span>
+            <UTooltip
+              :popper="{ placement: 'right' }"
+              text="Url should be without http://, https://, wwww"
+            >
+              <InfoCircleFilledIcon class="h-4" />
+            </UTooltip>
+          </span>
+        </div>
         <UInput v-model="state.url" />
       </UFormGroup>
     </div>
@@ -43,6 +50,7 @@
 
 <script setup>
 const props = defineProps(["environment", "label", "submitting", "deleting"]);
+import { InfoCircleFilledIcon } from "vue-tabler-icons";
 
 const state = ref({
   ...props.environment,
