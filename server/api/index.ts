@@ -1,6 +1,6 @@
 import { eq, and } from "drizzle-orm";
 import { db } from "~/db";
-import { environments } from "~/db/schema";
+import { environments, projects } from "~/db/schema";
 
 export default defineEventHandler(async (event) => {
   setResponseHeaders(event, {
@@ -16,15 +16,26 @@ export default defineEventHandler(async (event) => {
     return setResponseStatus(event, 405, "not allowed");
   }
 
-  const result = await db.query.environments.findFirst({
+  const projectresult = await db.query.projects.findFirst({
+    where: and(eq(projects.id, id as string)),
+  });
+  if (!projectresult) {
+    return setResponseStatus(event, 404, "Project not found");
+  }
+
+  const environmentresult = await db.query.environments.findFirst({
     where: and(
       eq(environments.project_id, id as string),
       eq(environments.url, from as string)
     ),
   });
-  if (!result) {
+  if (!environmentresult) {
     return setResponseStatus(event, 404, "Environment not found");
   }
 
-  return result;
+  return {
+    ...environmentresult,
+    badge_style: projectresult.badge_style,
+    badge_position: projectresult.badge_position,
+  };
 });
