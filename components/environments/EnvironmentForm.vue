@@ -15,7 +15,7 @@
           <span>
             <UTooltip
               :popper="{ placement: 'right' }"
-              text="Url should be without http://, https://, wwww"
+              text="Url should be without http://, https://, www."
             >
               <InfoCircleFilledIcon class="h-4" />
             </UTooltip>
