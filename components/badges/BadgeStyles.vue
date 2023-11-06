@@ -72,10 +72,10 @@ const badge_styles = [
     value: "default",
     label: "default",
   },
-  {
-    value: "banner",
-    label: "banner",
-  },
+  // {
+  //   value: "banner",
+  //   label: "banner",
+  // },
   {
     value: "watermark",
     label: "watermark",
@@ -103,12 +103,13 @@ const handleSwitch = (the_badge_style) => {
       selected_badge_position.value = badge_position_options.value[0];
     }
     badge_position_options.value = position_options1;
-  } else if (the_badge_style === "banner") {
-    if (!position_options2.includes(selected_badge_position.value)) {
-      selected_badge_position.value = badge_position_options.value[0];
-    }
-    badge_position_options.value = position_options2;
   }
+  // else if (the_badge_style === "banner") {
+  //   if (!position_options2.includes(selected_badge_position.value)) {
+  //     selected_badge_position.value = badge_position_options.value[0];
+  //   }
+  //   badge_position_options.value = position_options2;
+  // }
 };
 
 onMounted(() => {
@@ -121,8 +122,6 @@ watch(selected_badge_style, (newX) => {
 });
 
 const handleSubmit = () => {
-  console.log(selected_badge_style.value);
-  console.log(selected_badge_position.value);
   submitting.value = true;
   const data = {
     badge_position: selected_badge_position.value,
