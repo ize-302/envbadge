@@ -16,9 +16,13 @@
       <li>
         Copy and paste this in your html file just before the closing
         &lt;/body&gt; tag
-        <pre><code class="lang-js"><span> &lt;script src='https://cdn.jsdelivr.net/npm/envbadge-js@v0.0.3/script.js?projectId={{ id }}'&gt;&lt;/script&gt;</span></code></pre>
+        <pre
+          class="max-w-2xl"
+        ><code class="lang-js"><span> &lt;script src='https://cdn.jsdelivr.net/npm/envbadge-js@v0.0.3/script.js?projectId={{ id }}'&gt;&lt;/script&gt;</span></code></pre>
       </li>
     </ol>
+
+    <BadgeStyles />
   </Project>
 </template>
 
@@ -28,6 +32,7 @@ const route = useRoute();
 const { id } = route.params;
 import Prism from "prismjs";
 import "~/assets/css/material-dark.css";
+import BadgeStyles from "~/components/badges/BadgeStyles.vue";
 
 onMounted(() => {
   Prism.highlightAll();
