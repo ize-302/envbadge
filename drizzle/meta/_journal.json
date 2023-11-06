@@ -36,6 +36,27 @@
       "when": 1698582933001,
       "tag": "0004_illegal_zombie",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1699218374340,
+      "tag": "0005_faithful_xorn",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1699218436597,
+      "tag": "0006_outgoing_iceman",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "5",
+      "when": 1699227608222,
+      "tag": "0007_salty_kitty_pryde",
+      "breakpoints": true
     }
   ]
 }

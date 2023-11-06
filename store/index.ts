@@ -36,10 +36,10 @@ export const useStore = defineStore("store", {
       });
     },
     async updateProject(values: IProject) {
-      const { name, id } = values;
+      const { name, badge_style, badge_position, id } = values;
       await useFetch(`/api/projects/${id}`, {
         method: "put",
-        body: { name },
+        body: { name, badge_style, badge_position },
       });
     },
     async fetchProject(id: string) {

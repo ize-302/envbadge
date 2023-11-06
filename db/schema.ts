@@ -6,6 +6,8 @@ export const projects = pgTable("projects", {
   user_id: text("user_id"),
   created_at: timestamp("created_at").defaultNow(),
   last_updated: timestamp("last_updated").defaultNow(),
+  badge_style: text("badge_style").default("default"),
+  badge_position: text("badge_position").default("bottom-left"),
 });
 
 export const environments = pgTable("environments", {
@@ -16,6 +18,9 @@ export const environments = pgTable("environments", {
   project_id: uuid("project_id").notNull(),
   show_badge: boolean("show_badge").default(true),
   created_at: timestamp("created_at").defaultNow(),
+  custom_message: text("custom_message").default(
+    "You are viewing {{environment}} mode"
+  ),
 });
 
 // interfaces
@@ -25,6 +30,8 @@ export interface IProject {
   user_id: string;
   created_at: Date;
   last_updated: Date;
+  badge_style: string;
+  badge_position: string;
 }
 
 export interface IEnvironment {
@@ -35,4 +42,5 @@ export interface IEnvironment {
   project_id: string;
   show_badge: boolean;
   created_at: Date;
+  custom_message: string;
 }
