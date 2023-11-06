@@ -18,7 +18,7 @@
         &lt;/body&gt; tag
         <pre
           class="max-w-2xl"
-        ><code class="lang-js"><span> &lt;script src='https://cdn.jsdelivr.net/npm/envbadge-js@v0.0.3/script.js?projectId={{ id }}'&gt;&lt;/script&gt;</span></code></pre>
+        ><code class="lang-js"><span> &lt;script src='https://cdn.jsdelivr.net/npm/envbadge-js@v0.0.4/script.js?projectId={{ id }}'&gt;&lt;/script&gt;</span></code></pre>
       </li>
     </ol>
 
