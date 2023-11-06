@@ -22,6 +22,7 @@
       >
         Know your current working web environment at a glance 👌
       </p>
+      <img src="../screenshot.png" class="rounded-md border my-5" />
     </div>
     <div></div>
   </div>
