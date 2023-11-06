@@ -57,32 +57,35 @@ export const useStore = defineStore("store", {
     async fetchEnvironments(project_id: string) {
       this.isloading = true;
       const { data, error, pending, refresh } = await useFetch(
-        `/api/environments?project_id=${project_id}`
+        `/api/environments`,
+        {
+          query: { project_id },
+        }
       );
       return data.value;
     },
     async saveEnvironment(project_id: string, values: any) {
       const { name, url, description } = values;
       const { data, error, pending, refresh } = await useFetch(
-        `/api/environments?project_id=${project_id}`,
+        `/api/environments`,
         {
           method: "post",
           body: { name, url, description },
+          query: { project_id },
         }
       );
     },
     async updateEnvironment(project_id: string, payload: IEnvironment) {
-      await useFetch(
-        `/api/environments?project_id=${project_id}&environment_id=${payload.id}`,
-        {
-          method: "put",
-          body: payload,
-        }
-      );
+      await useFetch(`/api/environments`, {
+        method: "put",
+        body: payload,
+        query: { project_id, environment_id: payload.id },
+      });
     },
     async deleteEnvironment(environment_id: string) {
-      await useFetch(`/api/environments?environment_id=${environment_id}`, {
+      await useFetch(`/api/environments`, {
         method: "delete",
+        query: { environment_id },
       });
     },
     // misc
