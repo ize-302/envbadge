@@ -33,17 +33,18 @@
         class="h-10 m-5"
         :ui="{ rounded: 'rounded-md' }"
       />
-
-      <Environment
-        v-show="!store.getLoadingStatus"
-        v-for="(environment, index) in environments"
-        :key="index"
-        :environment="environment"
-        @refresh="handleFetchEnvironments"
-      />
+      <ClientOnly>
+        <Environment
+          v-show="!store.getLoadingStatus"
+          v-for="(environment, index) in environments"
+          :key="index"
+          :environment="environment"
+          @refresh="handleFetchEnvironments"
+        />
+      </ClientOnly>
 
       <div
-        v-show="!store.getLoadingStatus && environments.length === 0"
+        v-show="!store.getLoadingStatus && environments?.length === 0"
         class="pt-10 mb-10 flex flex-col justify-center items-center w-full gap-5 text-slate-400 dark:text-gray-600"
       >
         <ArchiveOffIcon
@@ -79,7 +80,6 @@ const handleFetchEnvironments = async () => {
 };
 
 handleFetchEnvironments();
-store.fetchProject(id.toString());
 
 async function handleSubmission(data: IProject) {
   submitting.value = true;

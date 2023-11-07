@@ -10,6 +10,8 @@
 <script setup lang="ts">
 const route = useRoute();
 const { id } = route.params;
+import { useStore } from "~/store";
+const store = useStore();
 
 useHead({
   titleTemplate: "EnvBadge",
@@ -41,4 +43,7 @@ const links = [
     class: "!py-2",
   },
 ];
+if (!store.getProject) {
+  store.fetchProject(id.toString());
+}
 </script>

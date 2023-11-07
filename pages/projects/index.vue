@@ -19,7 +19,7 @@
       />
     </div>
     <div
-      v-show="!store.getLoadingStatus && store.getProjects.length === 0"
+      v-show="!store.getLoadingStatus && store.getProjects?.length === 0"
       class="my-10 flex flex-col justify-center items-center w-full gap-5 text-slate-400 dark:text-gray-600"
     >
       <ArchiveOffIcon
