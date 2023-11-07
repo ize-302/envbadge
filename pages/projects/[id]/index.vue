@@ -44,7 +44,7 @@
       </ClientOnly>
 
       <div
-        v-show="!store.getLoadingStatus && environments.length === 0"
+        v-show="!store.getLoadingStatus && environments?.length === 0"
         class="pt-10 mb-10 flex flex-col justify-center items-center w-full gap-5 text-slate-400 dark:text-gray-600"
       >
         <ArchiveOffIcon
