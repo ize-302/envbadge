@@ -11,7 +11,7 @@ export const useStore = defineStore("store", {
     return {
       projects: [],
       isloading: true,
-      project: {},
+      project: null,
     };
   },
 

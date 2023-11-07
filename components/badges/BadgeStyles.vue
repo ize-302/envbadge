@@ -1,62 +1,72 @@
 <template>
   <div class="mt-10">
-    <h1
-      class="font-jakarta text-md font-medium text-slate-500 dark:text-slate-500 mb-5"
+    <UForm
+      :validate="validate"
+      :state="state"
+      class="flex flex-col gap-5"
+      @submit="handleSubmit(state)"
     >
-      Badge style
-    </h1>
-    <div class="mt-5 pb-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-      <label
-        :class="`border rounded-md p-4 shadow-sm relative cursor-pointer ${
-          selected_badge_style === badge.value
-            ? 'border-primary'
-            : 'border-slate-100 dark:border-slate-800'
-        }`"
-        v-for="badge in badge_styles"
-        :key="badge.value"
-        :for="badge.value"
-      >
-        <URadio
-          v-model="selected_badge_style"
-          v-bind="badge"
-          :id="badge.value"
-          class="hidden"
-          :disabled="badge.disabled"
+      <UFormGroup name="custom_message" label="Custom message" class="w-3/4">
+        <UInput
+          v-model="state.custom_message"
+          placeholder="You are viewing {{environment}} mode"
         />
-        <p
-          :class="`capitalize ${badge.disabled ? 'opacity-50' : 'opacity-100'}`"
-        >
-          {{ badge.label }}
-        </p>
-      </label>
-    </div>
-    <h1
-      class="font-jakarta text-md font-medium text-slate-500 dark:text-slate-500 mb-5 mt-5"
-    >
-      Badge position
-    </h1>
-    <div class="flex gap-10">
-      <USelect
-        size="md"
-        placeholder="Select..."
-        v-model="selected_badge_position"
-        :options="
-          badge_position_options.map((item) => {
-            return { name: item, value: item };
-          })
-        "
-        option-attribute="name"
-      />
-    </div>
+      </UFormGroup>
+      <UFormGroup name="badge_style" label=" Badge style">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <label
+            :class="`border rounded-md p-4 shadow-sm relative cursor-pointer ${
+              state.badge_style === badge.value
+                ? 'border-primary'
+                : 'border-slate-100 dark:border-slate-800'
+            }`"
+            v-for="badge in badge_styles.map((item) => {
+              return { label: item, value: item };
+            })"
+            :key="badge.value"
+            :for="badge.value"
+          >
+            <URadio
+              v-model="state.badge_style"
+              v-bind="badge"
+              :id="badge.value"
+              class="hidden"
+              :disabled="badge.disabled"
+            />
+            <p
+              :class="`capitalize ${
+                badge.disabled ? 'opacity-50' : 'opacity-100'
+              }`"
+            >
+              {{ badge.label }}
+            </p>
+          </label>
+        </div>
+      </UFormGroup>
+      <UFormGroup name="badge_position" label="Badge position" class="w-1/4">
+        <USelect
+          size="md"
+          placeholder="Select..."
+          v-model="state.badge_position"
+          :options="
+            position_options.map((item) => {
+              return { name: item, value: item };
+            })
+          "
+          option-attribute="name"
+        />
+      </UFormGroup>
 
-    <UButton
-      :disabled="submitting"
-      :loading="submitting"
-      @click="handleSubmit()"
-      class="mt-10"
-      size="lg"
-      >Update</UButton
-    >
+      <div>
+        <UButton
+          :disabled="submitting"
+          :loading="submitting"
+          type="'submit'"
+          size="lg"
+          >Update</UButton
+        >
+      </div>
+    </UForm>
   </div>
 </template>
 
@@ -67,73 +77,44 @@ const route = useRoute();
 const toast = useToast();
 const { id } = route.params;
 const submitting = ref(false);
-const badge_styles = [
-  {
-    value: "default",
-    label: "default",
-  },
-  // {
-  //   value: "banner",
-  //   label: "banner",
-  // },
-  {
-    value: "watermark",
-    label: "watermark",
-  },
+const badge_styles = ["default", "watermark"];
+const position_options = [
+  "top",
+  "top-left",
+  "top-right",
+  "bottom",
+  "bottom-left",
+  "bottom-right",
 ];
 
-let badge_position_options = ref([]);
-const selected_badge_style = ref("");
-const selected_badge_position = ref("");
+const state = ref({
+  badge_style: store.getProject.badge_style,
+  badge_position: store.getProject.badge_position,
+  custom_message: store.getProject.custom_message,
+});
 
-const handleSwitch = (the_badge_style) => {
-  const position_options1 = [
-    "top",
-    "top-left",
-    "top-right",
-    "bottom",
-    "bottom-left",
-    "bottom-right",
-  ];
-  const position_options2 = ["top", "bottom"];
-  selected_badge_style.value = the_badge_style;
-  selected_badge_position.value = store.getProject.badge_position;
-  if (["default", "watermark"].includes(the_badge_style)) {
-    if (!position_options1.includes(selected_badge_position.value)) {
-      selected_badge_position.value = badge_position_options.value[0];
-    }
-    badge_position_options.value = position_options1;
-  }
-  // else if (the_badge_style === "banner") {
-  //   if (!position_options2.includes(selected_badge_position.value)) {
-  //     selected_badge_position.value = badge_position_options.value[0];
-  //   }
-  //   badge_position_options.value = position_options2;
-  // }
+const validate = (state) => {
+  const errors = [];
+  if (!state.badge_style)
+    errors.push({ path: "badge_style", message: "Required" });
+  if (!state.badge_position)
+    errors.push({ path: "badge_position", message: "Required" });
+  if (!state.custom_message)
+    errors.push({ path: "custom_message", message: "Required" });
+  return errors;
 };
 
-onMounted(() => {
-  handleSwitch(store.getProject.badge_style);
-});
-
-// watch for changes
-watch(selected_badge_style, (newX) => {
-  handleSwitch(newX);
-});
-
-const handleSubmit = () => {
+const handleSubmit = (state) => {
   submitting.value = true;
   const data = {
-    badge_position: selected_badge_position.value,
-    badge_style: selected_badge_style.value,
+    badge_position: state.badge_position,
+    badge_style: state.badge_style,
+    custom_message: state.custom_message,
     id: id,
   };
-  const updateddata = toRaw(data);
-  store.updateProject(updateddata).then(() => {
+  store.updateProject(data).then(() => {
     submitting.value = false;
     toast.add({ title: "Badge has been updated" });
   });
 };
-
-store.fetchProject(id.toString());
 </script>
