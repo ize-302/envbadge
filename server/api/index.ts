@@ -37,5 +37,6 @@ export default defineEventHandler(async (event) => {
     ...environmentresult,
     badge_style: projectresult.badge_style,
     badge_position: projectresult.badge_position,
+    custom_message: projectresult.custom_message,
   };
 });

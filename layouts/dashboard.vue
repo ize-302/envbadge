@@ -3,9 +3,9 @@
     <div
       class="flex justify-between items-center py-5 border-b-[0.1px] border-slate-300 dark:border-slate-700"
     >
-      <h1 class="text-lg font-medium text-black dark:text-white font-jakarta">
+      <ULink to="/" class="text-lg font-medium text-black dark:text-white">
         🚧 EnvBadge
-      </h1>
+      </ULink>
       <div class="flex justify-between items-center gap-2">
         <ColorModeButton />
         <UBadge class="gap-1" color="gray" variant="solid" size="lg">

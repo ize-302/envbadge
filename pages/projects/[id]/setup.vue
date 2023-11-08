@@ -1,8 +1,6 @@
 <template>
   <Project>
-    <h1
-      class="font-jakarta text-md font-medium text-slate-500 dark:text-slate-500 mb-5"
-    >
+    <h1 class="text-md font-medium text-slate-500 dark:text-slate-500 mb-5">
       Setup
     </h1>
 
