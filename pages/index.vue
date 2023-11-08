@@ -17,9 +17,13 @@
           variant="soft"
           size="lg"
           class="mt-5"
-          label="Documentation"
-          to="/docs"
-        ></UButton>
+          label="Source code"
+          to="https://github.com/ize-302/envbadge"
+        >
+          <template #leading>
+            <BrandGithubIcon size="20" />
+          </template>
+        </UButton>
         <UButton
           size="lg"
           class="mt-5"
