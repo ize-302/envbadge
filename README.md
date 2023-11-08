@@ -16,8 +16,6 @@ EnvBadge keeps you informed about your current environment at a glance.
 4. Go to the project's setup tab and copy the code snippet. This should be placed right before the closing `</body>` of your website or app. And you are done.
 5. You can toggle the visibility if the badge for any environment, if you want to
 
-#### Upcoming features
+## Related package
 
-- [ - ] Badge styles including watermark
-- [ - ] Custom badge position
-- [ - ] Custom message
+[envbadge-js](https://github.com/ize-302/envbadge-js)
