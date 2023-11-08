@@ -2,9 +2,7 @@
   <div
     class="bg-red-50 dark:bg-red-900 border border-red-300 dark:border-red-500 rounded-md py-5"
   >
-    <h1
-      class="font-jakarta text-md font-medium text-red-300 dark:text-red-600 mb-5 px-5"
-    >
+    <h1 class="text-md font-medium text-red-300 dark:text-red-600 mb-5 px-5">
       Delete Details
     </h1>
     <hr class="border-red-300 dark:border-red-500" />

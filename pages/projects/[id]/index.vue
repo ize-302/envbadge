@@ -4,9 +4,7 @@
       class="bg-slate-50 dark:bg-transparent border border-gray-300 dark:border-gray-700 rounded-md pt-5"
     >
       <div class="flex justify-between items-center mb-5 px-5">
-        <h1
-          class="font-jakarta text-md font-medium text-slate-500 dark:text-slate-500"
-        >
+        <h1 class="text-md font-medium text-slate-500 dark:text-slate-500">
           Environments
         </h1>
       </div>

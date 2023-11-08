@@ -1,5 +1,5 @@
 <template>
-  <div class="text-[#0f3254] dark:text-gray-300">
+  <div class="text-[#0f3254] dark:text-gray-300 font-jakarta">
     <div class="container mx-auto max-w-5xl px-5">
       <slot />
     </div>

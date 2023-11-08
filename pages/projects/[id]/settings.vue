@@ -6,7 +6,7 @@
         class="bg-slate-50 dark:bg-transparent border border-gray-300 dark:border-gray-700 rounded-md py-5"
       >
         <h1
-          class="font-jakarta text-md font-medium text-slate-500 dark:text-slate-500 mb-5 px-5"
+          class="text-md font-medium text-slate-500 dark:text-slate-500 mb-5 px-5"
         >
           Project Details
         </h1>
