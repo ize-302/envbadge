@@ -4,7 +4,9 @@
     <p class="text-slate-600 text-lg dark:text-white">Projects</p>
   </div>
   <div>
-    <div class="mt-5 pb-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+    <div
+      class="mt-5 pb-5 grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-5"
+    >
       <USkeleton
         v-show="store.getLoadingStatus"
         v-for="item in Array.apply(null, Array(5))"
