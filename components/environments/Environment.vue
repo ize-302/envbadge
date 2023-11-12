@@ -18,12 +18,13 @@
       <div class="w-5/12 flex gap-2 items-center">
         <WorldIcon class="h-6 text-primary" />
         <div class="flex items-center truncate overflow-hidden">
-          <p class="truncate overflow-hidden">{{ environment?.name }}</p>
           <UTooltip
+            :popper="{ placement: 'top' }"
             :text="environment?.description || 'No description available'"
           >
-            <InfoCircleFilledIcon class="h-4" />
+            <InfoCircleIcon class="h-4 text-gray-400" />
           </UTooltip>
+          <p class="truncate overflow-hidden">{{ environment?.name }}</p>
         </div>
       </div>
       <div class="w-5/12">
@@ -48,7 +49,7 @@
 
 <script setup>
 const toast = useToast();
-import { WorldIcon, InfoCircleFilledIcon } from "vue-tabler-icons";
+import { WorldIcon, InfoCircleIcon } from "vue-tabler-icons";
 import { useStore } from "~/store";
 const props = defineProps(["environment"]);
 const selected = ref(props.environment.show_badge);

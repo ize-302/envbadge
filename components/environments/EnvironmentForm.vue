@@ -13,15 +13,15 @@
         <div
           class="text-sm flex items-center font-medium text-gray-700 dark:text-gray-200 mb-1"
         >
+          <!-- <span> -->
+          <UTooltip
+            :popper="{ placement: 'top' }"
+            text="Url should be without http://, https://, www."
+          >
+            <InfoCircleIcon class="h-4 text-gray-400" />
+          </UTooltip>
+          <!-- </span> -->
           URL
-          <span>
-            <UTooltip
-              :popper="{ placement: 'right' }"
-              text="Url should be without http://, https://, www."
-            >
-              <InfoCircleFilledIcon class="h-4" />
-            </UTooltip>
-          </span>
         </div>
         <UInput v-model="state.url" />
       </UFormGroup>
@@ -53,7 +53,7 @@
 
 <script setup>
 const props = defineProps(["environment", "label", "submitting", "deleting"]);
-import { InfoCircleFilledIcon } from "vue-tabler-icons";
+import { InfoCircleIcon } from "vue-tabler-icons";
 
 const state = ref({
   ...props.environment,
